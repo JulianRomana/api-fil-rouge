@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ApiResource(
  *  itemOperations={"get"},
- *  normalizationContext={"groups"={"todo:read"}}
  * )
  */
 class Restaurant
@@ -40,7 +39,7 @@ class Restaurant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $adress;
+    private $address;
 
     /**
      * @ORM\Column(type="integer")
@@ -88,14 +87,14 @@ class Restaurant
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): self
+    public function setAddress(string $adress): self
     {
-        $this->adress = $adress;
+        $this->address = $adress;
 
         return $this;
     }
