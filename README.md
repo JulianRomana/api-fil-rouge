@@ -11,7 +11,8 @@
 * Set DATABASE_URL in .env(db_name is greenleaf)
 ```
 ./bin/console doctrine:database:create
-./bin/console make:migrations:migrate
+./bin/console make:migration
+./bin/console doctrine:migrations:migrate
 ./bin/console doctrine:fixtures:load
 
 ./bin/console server:run
