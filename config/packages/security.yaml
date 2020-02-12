@@ -1,26 +1,41 @@
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
-
+        #FOS\UserBundle\Model\UserInterface: bcrypt
+        App\Entity\Admin\User:
+            algorithm: bcrypt
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        our_db_provider:
+            entity:
+                class: App\Entity\Admin\User
+                property: username
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
         main:
             pattern: ^/
+            user_checker: security.user_checker
+            provider: fos_userbundle
             form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
+            registration:
+                registration_path: fos_user_registration_register
+                check_path: fos_user_security_check
 
-            logout:       true
+            logout:
+                path: fos_user_security_logout
+                target: /
             anonymous:    true
 
     access_control:
