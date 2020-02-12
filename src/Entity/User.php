@@ -19,6 +19,11 @@ class User extends BaseUser
    */
   protected $id;
 
+  protected $groups;
+
+  public function getGroups() {
+    return $this->groups;
+  }
 
   public function getId(): ?int
   {
