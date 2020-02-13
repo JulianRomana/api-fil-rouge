@@ -1,4 +1,5 @@
 framework:
+    form: { enabled: true }
     translator: ~
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true

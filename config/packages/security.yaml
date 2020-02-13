@@ -1,8 +1,8 @@
 security:
     encoders:
-        #FOS\UserBundle\Model\UserInterface: bcrypt
-        App\Entity\Admin\User:
-            algorithm: bcrypt
+        FOS\UserBundle\Model\UserInterface: bcrypt
+        #App\Entity\Admin\User:
+         #   algorithm: bcrypt
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
@@ -11,7 +11,7 @@ security:
     providers:
         our_db_provider:
             entity:
-                class: App\Entity\Admin\User
+                class: App\Entity\User
                 property: username
         fos_userbundle:
             id: fos_user.user_provider.username

@@ -5,25 +5,46 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *   normalizationContext={"groups"={"user", "user:read"}},
+ *   denormalizationContext={"groups"={"user", "user:write"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
 {
   /**
-   * @ORM\Id()
-   * @ORM\GeneratedValue()
+   * @ORM\Id
    * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
    */
   protected $id;
+#@ORM\ManyToMany(targetEntity="App\Entity\Group")
 
-  protected $groups;
+  /**
+   * @Groups({"user"})
+   * @ORM\JoinTable(name="fos_group",
+   *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+   *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+   * )
+   */
+  protected $username;/**
+   * @Groups({"user"})
+   */
+  protected $fullName;
+  /**
+   * @Groups({"user"})
+   */
+  protected $email;
+  /**
+   * @Groups({"user:write"})
+   */
+  protected $password;
 
-  public function getGroups() {
-    return $this->groups;
-  }
 
   public function getId(): ?int
   {
@@ -38,6 +59,17 @@ class User extends BaseUser
   public function __setUsername(string $username): self
   {
     $this->username = $username;
+    return $this;
+  }
+
+  public function getFullName(): ?string
+  {
+    return $this->fullName;
+  }
+
+  public function __FullName(string $fullName): self
+  {
+    $this->fullName = $fullName;
     return $this;
   }
 
