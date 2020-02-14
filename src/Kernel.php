@@ -2,6 +2,7 @@
 
 namespace App;
 
+use FOS\UserBundle\FOSUserBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -17,6 +18,10 @@ class Kernel extends BaseKernel
 
     public function registerBundles(): iterable
     {
+      $bundles = array(
+        #new vendor\FOS\UserBundle\FOSUserBundle(),
+        new FOSUserBundle(),
+      );
         $contents = require $this->getProjectDir().'/config/bundles.php';
         foreach ($contents as $class => $envs) {
             if ($envs[$this->environment] ?? $envs['all'] ?? false) {
