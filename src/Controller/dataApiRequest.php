@@ -19,7 +19,26 @@ class dataApiRequest
     // Check HTTP response
     if (200 !== $response->getStatusCode()) {
       // handle the HTTP request error
-      echo strval('Error: Status Code: ' + $response->getStatusCode());
+      echo strval('Error(/velib): Status Code: ' + $response->getStatusCode());
+    } else {
+      $content = $response->getContent();
+      $responseApi = JsonResponse::fromJsonString($content);
+      return $responseApi;
+    }
+  }
+
+  /**
+   * @Route("/trash", name="trash")
+   */
+  function getTrash()
+  {
+    $httpClient = HttpClient::create();
+    $response = $httpClient->request('GET', 'https://opendata.paris.fr/api/records/1.0/search/?dataset=dechets-menagers-points-dapport-volontaire-stations-trilib&rows=20&facet=type&facet=code_postal&facet=etat');
+
+    // Check HTTP response
+    if (200 !== $response->getStatusCode()) {
+      // handle the HTTP request error
+      echo strval('Error(/trash): Status Code: ' + $response->getStatusCode());
     } else {
       $content = $response->getContent();
       $responseApi = JsonResponse::fromJsonString($content);
