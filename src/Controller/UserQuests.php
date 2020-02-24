@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\UserQuest;
 
 class UserQuests
 {
@@ -21,7 +22,7 @@ class UserQuests
    */
   public function getUserQuest(Request $request) {
     $user_quest = $this->entityManager
-       ->getRepository(UserQuestRepository::class)
+       ->getRepository(UserQuest::class)
        ->findAllQuestsById($request);
 
      $user_quest_array = $user_quest->getArrayResult();
@@ -34,7 +35,7 @@ class UserQuests
    */
   function postUserQuest(Request $request) {
     $user_quest = $this->entityManager
-      ->getRepository(UserQuestRepository::class)
+      ->getRepository(UserQuest::class)
       ->setAllQuests($request);
 
     $user_quest_array = $user_quest->getArrayResult();

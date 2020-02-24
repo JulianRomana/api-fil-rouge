@@ -14,11 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserQuest
 {
-    /**
- * @ORM\Id()
- * @ORM\GeneratedValue()
- * @ORM\Column(type="integer")
- */
+  /**
+   * @var int
+   *
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   * @ORM\Id
+   */
   private $id;
 
   /**
@@ -37,6 +39,11 @@ class UserQuest
    * @ORM\Column(type="integer")
    */
   private $Status;
+
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
   public function getUserId(): ?User
   {
