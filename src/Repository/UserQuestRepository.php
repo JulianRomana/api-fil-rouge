@@ -22,24 +22,15 @@ class UserQuestRepository extends ServiceEntityRepository
      /**
      * @return UserQuest[] Returns an array of UserQuest objects
      */
-
     public function findAllQuestsById($id)
     {
-        return $this->createQueryBuilder('getAllQuests')
-            ->where('getAllQuests.user_id = :id')
+        return $this->createQueryBuilder('getAllQuestByUser')
+            ->select('getAllQuestByUser')
+            ->from(UserQuest::class, 'User')
+            ->where('getAllQuestByUser.user_id = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
-        ;
-    }
-
-    public function setAllQuests($value): ?UserQuest
-    {
-        return $this->createQueryBuilder('postQuest')
-            ->andWhere('postQuest.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
         ;
     }
 

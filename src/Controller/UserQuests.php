@@ -20,33 +20,13 @@ class UserQuests
   /**
    * @Route("/user_quests/{id}", methods={"GET"}, name="getUser_Quest")
    */
-  public function getUserQuest(Request $request) {
+  public function getUserQuest($id) {
     $user_quest = $this->entityManager
        ->getRepository(UserQuest::class)
-       ->findAllQuestsById($request);
+       ->findAllQuestsById($id);
 
-     $user_quest_array = $user_quest->getArrayResult();
-
-     return new JsonResponse($user_quest_array);
-  }
-
-  /**
-   * @Route("/user_quests", methods={"POST"}, name="postUser_Quest")
-   */
-  function postUserQuest(Request $request) {
-    $user_quest = $this->entityManager
-      ->getRepository(UserQuest::class)
-      ->setAllQuests($request);
-
-    $user_quest_array = $user_quest->getArrayResult();
-
-    return new JsonResponse($user_quest_array);
-  }
-
-  /**
-   * @Route("/user_quests/{id}", methods={"PUT"}, name="putUser_Quest")
-   */
-  function putUserQuest(int $id) {
-
+     dd($user_quest);
+     $response = new JsonResponse($user_quest);
+     return $response;
   }
 }

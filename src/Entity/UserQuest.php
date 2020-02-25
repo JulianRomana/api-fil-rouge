@@ -36,7 +36,7 @@ class UserQuest
   private $quest_id;
 
   /**
-   * @ORM\Column(type="integer")
+   * @ORM\Column(type="string")
    */
   private $Status;
 
@@ -69,12 +69,12 @@ class UserQuest
       return $this;
   }
 
-  public function getStatus(): ?int
+  public function getStatus(): ?string
   {
       return $this->Status;
   }
 
-  public function setStatus(int $Status): self
+  public function setStatus(string $Status): self
   {
       $this->Status = $Status;
 

@@ -12,39 +12,39 @@ class QuestFixtures extends Fixture
     {
 
       $quest = (new Quest())
-        ->setTitle('Toto')
-        ->setDescription('Lorem ipsum dolor sit amet')
-        ->setAddress('25 rue Victor Hugo')
-        ->setCategory('Nourriture')
-        ->setCity('Paris')
+        ->setTitle('Tri de déchets')
+        ->setDescription('Faites le tri de vos déchets')
+        ->setAddress('adress')
+        ->setCategory('Déchets')
+        ->setCity('N\'import où')
         ->setPicture('Picture')
         ->setDuration('10');
 
       $quest1 = (new Quest())
-        ->setTitle('Toto')
-        ->setDescription('Lorem dolores ipsum dolor sit amet')
-        ->setAddress('18 rue Victor Hugo')
+        ->setTitle('Regarder une vidéo')
+        ->setDescription('Voir une vidéo explicative sur le tri de déchets')
+        ->setAddress('adress')
         ->setCategory('Déchets')
-        ->setCity('Paris')
+        ->setCity('N\'import où')
         ->setPicture('Picture')
         ->setDuration('10');
 
       $quest2 = (new Quest())
-        ->setTitle('Toto')
-        ->setDescription('Lorem ipsum dolor sit amet')
-        ->setAddress('18 rue Victor ')
-        ->setCategory('Pollution')
+        ->setTitle('Vélo électrique')
+        ->setDescription('Utiliser un vélo électrique')
+        ->setAddress('adress')
+        ->setCategory('Moins polluer')
         ->setCity('Paris')
         ->setPicture('Picture')
         ->setDuration('10');
 
       $quest3 = (new Quest())
-        ->setTitle('Toto')
-        ->setDescription('Lorem ipsum dolor sit amet')
-        ->setAddress('18 rue  Hugo')
-        ->setCategory('Nourriture')
-        ->setCity('Paris')
-        ->setPicture('D')
+        ->setTitle('Don')
+        ->setDescription('Faites un don à une association')
+        ->setAddress('adress')
+        ->setCategory('Moins polluer')
+        ->setCity('internet')
+        ->setPicture('picture')
         ->setDuration('10');
 
       $allQuest = [

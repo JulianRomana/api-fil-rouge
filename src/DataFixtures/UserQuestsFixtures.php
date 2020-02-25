@@ -12,13 +12,13 @@ class UserQuestsFixtures extends Fixture
 {
   public function load(ObjectManager $manager)
   {
-    for ($i = 0; $i < 1; $i++) {
+    /**for ($i = 0; $i < 1; $i++) {
       $user_quest = (new UserQuest())
         ->setQuestId('/api/quest/16')
         ->setUserId('/api/users/8')
         ->setStatus(1);
       $manager->persist($user_quest);
     }
-    $manager->flush();
+    $manager->flush();*/
   }
 }
