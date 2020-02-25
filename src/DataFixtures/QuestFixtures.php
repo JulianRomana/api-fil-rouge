@@ -11,53 +11,76 @@ class QuestFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 
-      $quest = (new Quest())
-        ->setTitle('Tri de déchets')
-        ->setDescription('Faites le tri de vos déchets')
-        ->setAddress('adress')
-        ->setCategory('Déchets')
-        ->setCity('N\'import où')
-        ->setPicture('Picture')
-        ->setDuration('10');
+      $totalQuest = 5;
 
-      $quest1 = (new Quest())
-        ->setTitle('Regarder une vidéo')
-        ->setDescription('Voir une vidéo explicative sur le tri de déchets')
-        ->setAddress('adress')
-        ->setCategory('Déchets')
-        ->setCity('N\'import où')
-        ->setPicture('Picture')
-        ->setDuration('10');
-
-      $quest2 = (new Quest())
-        ->setTitle('Vélo électrique')
-        ->setDescription('Utiliser un vélo électrique')
-        ->setAddress('adress')
-        ->setCategory('Moins polluer')
-        ->setCity('Paris')
-        ->setPicture('Picture')
-        ->setDuration('10');
-
-      $quest3 = (new Quest())
-        ->setTitle('Don')
-        ->setDescription('Faites un don à une association')
-        ->setAddress('adress')
-        ->setCategory('Moins polluer')
-        ->setCity('internet')
-        ->setPicture('picture')
-        ->setDuration('10');
-
-      $allQuest = [
-        $quest,
-        $quest1,
-        $quest2,
-        $quest3
+      $title = [
+        'Tri de déchets',
+        'Regarder une vidéo',
+        'Vélo électrique',
+        'Don',
+        'Manger mieux'
       ];
 
-      foreach($allQuest as $quest) {
+      $description = [
+        'Faites le tri de vos déchets',
+        'Voir une vidéo explicative sur le tri de déchets',
+        'Utiliser un vélo électrique',
+        'Faites un don à une association',
+        'Manger dans un restaurant responsable '
+      ];
+
+      $adress = [
+        'adress',
+        'adress',
+        'adress',
+        'adress',
+        'adress'
+      ];
+
+      $category = [
+        'Déchets',
+        'Déchets',
+        'Moins polluer',
+        'Moins polluer',
+        'Manger responsable '
+      ];
+
+      $city = [
+        'N\'import où',
+        'N\'import où',
+        'Paris',
+        'Paris',
+        'Paris'
+      ];
+
+      $picture = [
+        'Picture',
+        'Picture',
+        'Picture',
+        'Picture',
+        'Picture'
+      ];
+
+      $duration = [
+        '10',
+        '10',
+        '10',
+        '10',
+        '10'
+      ];
+
+      for ($i= 0; $i < $totalQuest; $i++) {
+        $quest = (new Quest())
+          ->setTitle($title[$i])
+          ->setDescription($description[$i])
+          ->setAddress($adress[$i])
+          ->setCategory($category[$i])
+          ->setCity($city[$i])
+          ->setPicture($picture[$i])
+          ->setDuration($duration[$i])
+        ;
         $manager->persist($quest);
       }
-
       $manager->flush();
     }
 }

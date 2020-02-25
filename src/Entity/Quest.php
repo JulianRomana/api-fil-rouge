@@ -6,9 +6,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  itemOperations={"GET"}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\QuestRepository")
  * @ORM\Table(name="quest")
  */
@@ -18,40 +21,48 @@ class Quest
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"uq:read"})
      */
     private $id;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=500)
      */
     private $description;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $address;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $city;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $picture;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $duration;
 
     /**
+     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $category;

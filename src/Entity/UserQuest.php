@@ -2,14 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Quest;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *   collectionOperations={"GET", "POST"},
+ *   itemOperations={"GET", "PUT"},
+ *   normalizationContext={"groups"={"uq", "uq:read"}},
+ *   denormalizationContext={"groups"={"uq", "uq:write"}}
+ * )
+ * @ApiFilter(SearchFilter::class, properties={
+ *   "user_id": "exact"
+ *   })
  * @ORM\Entity(repositoryClass="App\Repository\UserQuestRepository")
  */
 class UserQuest
@@ -36,6 +47,7 @@ class UserQuest
   private $quest_id;
 
   /**
+   * @Groups({"uq:read"})
    * @ORM\Column(type="string")
    */
   private $Status;
@@ -57,6 +69,9 @@ class UserQuest
       return $this;
   }
 
+  /**
+   * @Groups({"uq:read"})
+   */
   public function getQuestId(): ?Quest
   {
       return $this->quest_id;

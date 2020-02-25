@@ -11,6 +11,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *   collectionOperations={"GET", "POST"},
+ *   itemOperations={"GET"},
  *   normalizationContext={"groups"={"user", "user:read"}},
  *   denormalizationContext={"groups"={"user", "user:write"}}
  * )
@@ -34,7 +36,8 @@ class User extends BaseUser
    *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
    * )
    */
-  protected $username;/**
+  protected $username;
+  /**
    * @Groups({"user"})
    */
   protected $email;
