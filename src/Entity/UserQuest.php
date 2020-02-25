@@ -15,8 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *   collectionOperations={"GET", "POST"},
  *   itemOperations={"GET", "PUT"},
- *   normalizationContext={"groups"={"uq", "uq:read"}},
- *   denormalizationContext={"groups"={"uq", "uq:write"}}
+ *   normalizationContext={"groups"={"uq", "uq:read"}}
  * )
  * @ApiFilter(SearchFilter::class, properties={
  *   "user_id": "exact"
@@ -35,19 +34,21 @@ class UserQuest
   private $id;
 
   /**
+   * @Groups({"uq:write"})
    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userQuests")
    * @ORM\JoinColumn(nullable=false)
    */
   private $user_id;
 
   /**
+   * @Groups({"uq:write"})
    * @ORM\ManyToOne(targetEntity="App\Entity\Quest", inversedBy="userQuests")
    * @ORM\JoinColumn(nullable=false)
    */
   private $quest_id;
 
   /**
-   * @Groups({"uq:read"})
+   * @Groups({"uq:read, uq:write"})
    * @ORM\Column(type="string")
    */
   private $Status;
