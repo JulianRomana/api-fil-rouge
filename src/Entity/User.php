@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *   collectionOperations={"GET", "POST"},
+ *   itemOperations={"GET"},
  *   normalizationContext={"groups"={"user", "user:read"}},
  *   denormalizationContext={"groups"={"user", "user:write"}}
  * )
@@ -32,10 +36,7 @@ class User extends BaseUser
    *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
    * )
    */
-  protected $username;/**
-   * @Groups({"user"})
-   */
-  protected $fullName;
+  protected $username;
   /**
    * @Groups({"user"})
    */
@@ -45,6 +46,16 @@ class User extends BaseUser
    */
   protected $password;
 
+  /**
+   * @ORM\OneToMany(targetEntity="App\Entity\UserQuest", mappedBy="user_id", orphanRemoval=true)
+   */
+  private $userQuests;
+
+  public function __construct()
+  {
+      parent::__construct();
+      $this->userQuests = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -95,5 +106,36 @@ class User extends BaseUser
     $this->password = $password;
 
     return $this;
+  }
+
+  /**
+   * @return Collection|UserQuest[]
+   */
+  public function getUserQuests(): Collection
+  {
+      return $this->userQuests;
+  }
+
+  public function addUserQuest(UserQuest $userQuest): self
+  {
+      if (!$this->userQuests->contains($userQuest)) {
+          $this->userQuests[] = $userQuest;
+          $userQuest->setUserId($this);
+      }
+
+      return $this;
+  }
+
+  public function removeUserQuest(UserQuest $userQuest): self
+  {
+      if ($this->userQuests->contains($userQuest)) {
+          $this->userQuests->removeElement($userQuest);
+          // set the owning side to null (unless already changed)
+          if ($userQuest->getUserId() === $this) {
+              $userQuest->setUserId(null);
+          }
+      }
+
+      return $this;
   }
 }
