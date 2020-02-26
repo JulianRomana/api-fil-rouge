@@ -5,15 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Quest;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *   collectionOperations={"GET", "POST"},
+ *   collectionOperations={"POST"},
  *   itemOperations={"GET", "PUT"},
  *   normalizationContext={"groups"={"uq", "uq:read"}}
  * )
@@ -85,6 +82,9 @@ class UserQuest
       return $this;
   }
 
+  /**
+   * @Groups({"uq:read"})
+   */
   public function getStatus(): ?string
   {
       return $this->Status;
