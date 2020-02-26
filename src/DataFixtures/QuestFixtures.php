@@ -42,7 +42,7 @@ class QuestFixtures extends Fixture
         'Déchets',
         'Moins polluer',
         'Moins polluer',
-        'Manger responsable '
+        'Manger responsable'
       ];
 
       $city = [
