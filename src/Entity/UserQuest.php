@@ -7,10 +7,11 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ApiResource(
- *   collectionOperations={"POST"},
+ *   collectionOperations={"POST", "GET"},
  *   itemOperations={"GET", "PUT"},
  *   normalizationContext={"groups"={"uq", "uq:read"}}
  * )
@@ -23,7 +24,7 @@ class UserQuest
 {
   /**
    * @var int
-   *
+   * @Groups({"uq:read"})
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
    * @ORM\Id
@@ -31,14 +32,14 @@ class UserQuest
   private $id;
 
   /**
-   * @Groups({"uq:write"})
+   * @Groups({"uq:read, uq:write"})
    * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userQuests")
    * @ORM\JoinColumn(nullable=false)
    */
   private $user_id;
 
   /**
-   * @Groups({"uq:write"})
+   * @Groups({"uq:read, uq:write"})
    * @ORM\ManyToOne(targetEntity="App\Entity\Quest", inversedBy="userQuests")
    * @ORM\JoinColumn(nullable=false)
    */
@@ -49,6 +50,12 @@ class UserQuest
    * @ORM\Column(type="string")
    */
   private $Status;
+
+  /**
+   * @Groups({"uq:read"})
+   * @ORM\Column(type="string", length=255, nullable=true)
+   */
+  private $date;
 
   public function getId(): ?int
   {
@@ -97,4 +104,18 @@ class UserQuest
       return $this;
   }
 
+  /**
+   * @Groups({"uq:read"})
+   */
+  public function getDate(): ?string
+  {
+      return $this->date;
+  }
+
+  public function setDate(?string $date): self
+  {
+      $this->date = $date;
+
+      return $this;
+  }
 }
