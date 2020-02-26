@@ -24,8 +24,6 @@ class UserQuests
     $user_quest = $this->entityManager
        ->getRepository(UserQuest::class)
        ->findAllQuestsById($id);
-
-     dd($user_quest);
      $response = new JsonResponse($user_quest);
      return $response;
   }

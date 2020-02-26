@@ -28,6 +28,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 class User extends BaseUser
 {
   /**
+   * @Groups({"user"})
    * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
@@ -48,7 +49,7 @@ class User extends BaseUser
    */
   protected $email;
   /**
-   * @Groups({"user:write"})
+   * @Groups({"user"})
    */
   protected $password;
 
