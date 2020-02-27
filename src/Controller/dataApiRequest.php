@@ -14,7 +14,7 @@ class dataApiRequest
   function getVelib()
   {
     $httpClient = HttpClient::create();
-    $response = $httpClient->request('GET', 'https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=200&facet=station_state&facet=kioskstate');
+    $response = $httpClient->request('GET', 'https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=50&facet=station_state&facet=kioskstate');
 
     // Check HTTP response
     if (200 !== $response->getStatusCode()) {
