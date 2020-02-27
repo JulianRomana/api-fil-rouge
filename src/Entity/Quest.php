@@ -42,12 +42,6 @@ class Quest
      * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
-    private $address;
-
-    /**
-     * @Groups({"uq:read"})
-     * @ORM\Column(type="string", length=255)
-     */
     private $city;
 
     /**
@@ -97,18 +91,6 @@ class Quest
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
 
         return $this;
     }

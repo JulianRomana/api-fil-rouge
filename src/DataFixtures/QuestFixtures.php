@@ -40,7 +40,7 @@ class QuestFixtures extends Fixture
         //Pollution
         'Utiliser un vélo électrique',
         'Utiliser une trotinette électrique',
-        'Faites un don à une association',
+        'Faites un don à une association pour lutter contre la pollution',
         'Faites un trajet en voiture électrique',
         'Faites un trajet en co-voiturage',
         //Manger mieux
@@ -49,26 +49,11 @@ class QuestFixtures extends Fixture
         'Faites vos course chez un marchand bio'
       ];
 
-      $adress = [
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress',
-        'adress'
-      ];
-
       $category = [
-        'Déchets',
-        'Déchets',
-        'Déchets',
-        'Déchets',
+        'Les Déchets',
+        'Les Déchets',
+        'Les Déchets',
+        'Les Déchets',
         'Moins polluer',
         'Moins polluer',
         'Moins polluer',
@@ -119,7 +104,6 @@ class QuestFixtures extends Fixture
         $quest = (new Quest())
           ->setTitle($title[$i])
           ->setDescription($description[$i])
-          ->setAddress($adress[$i])
           ->setCategory($category[$i])
           ->setCity($city[$i])
           ->setPicture($picture[$i])
