@@ -46,6 +46,11 @@ class Greenwalk
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $postalCode;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +112,18 @@ class Greenwalk
     public function setDate(?string $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
 
         return $this;
     }

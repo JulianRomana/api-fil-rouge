@@ -58,12 +58,6 @@ class Quest
 
     /**
      * @Groups({"uq:read"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $duration;
-
-    /**
-     * @Groups({"uq:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $category;
@@ -139,18 +133,6 @@ class Quest
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
-
-        return $this;
-    }
-
-    public function getDuration(): ?string
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(?string $duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }

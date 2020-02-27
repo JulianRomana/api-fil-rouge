@@ -29,13 +29,18 @@ class GreenwalkFixtures extends Fixture
       ];
 
       $geo = [
-        ["48.8776054", "2.3334023"],
-        ["48.8704013", "2.3083309"]
+        ["2.3334023", "48.8776054"],
+        ["2.3083309", "48.8704013"]
       ];
 
       $date = [
         "07-08-2020 09:00 GMT",
         "05-05-2020 09:00 GMT"
+      ];
+
+      $postalCode = [
+        "75009",
+        "75008"
       ];
 
       for($i= 0; $i < $totalGreenwalk; $i++) {
@@ -44,7 +49,8 @@ class GreenwalkFixtures extends Fixture
           ->setCity($city[$i])
           ->setAdress($adress[$i])
           ->setDate($date[$i])
-          ->setGeo($geo[$i]);
+          ->setGeo($geo[$i])
+          ->setPostalCode($postalCode[$i]);
         $manager->persist($greewalk);
       }
       $manager->flush();

@@ -19,7 +19,7 @@ class dataApiRequest
     // Check HTTP response
     if (200 !== $response->getStatusCode()) {
       // handle the HTTP request error
-      echo strval('Error(/velib): Status Code: ' + $response->getStatusCode());
+      echo strval('Error(/velib): Status Code: ' . $response->getStatusCode());
     } else {
       $content = $response->getContent();
       $responseApi = JsonResponse::fromJsonString($content);
@@ -38,7 +38,7 @@ class dataApiRequest
     // Check HTTP response
     if (200 !== $response->getStatusCode()) {
       // handle the HTTP request error
-      echo strval('Error(/trash): Status Code: ' + $response->getStatusCode());
+      echo strval('Error(/trash): Status Code: ' . $response->getStatusCode());
     } else {
       $content = $response->getContent();
       $responseApi = JsonResponse::fromJsonString($content);
@@ -47,7 +47,7 @@ class dataApiRequest
   }
 
   /**
-   * @Route("/trotinette", name="trash")
+   * @Route("/trotinette", name="trotinette")
    */
   function getTrotinette()
   {
@@ -57,7 +57,7 @@ class dataApiRequest
     // Check HTTP response
     if (200 !== $response->getStatusCode()) {
       // handle the HTTP request error
-      echo strval('Error(/trash): Status Code: ' + $response->getStatusCode());
+      echo strval('Error(/trotinette): Status Code: ' . $response->getStatusCode());
     } else {
       $content = $response->getContent();
       $responseApi = JsonResponse::fromJsonString($content);
