@@ -45,4 +45,23 @@ class dataApiRequest
       return $responseApi;
     }
   }
+
+  /**
+   * @Route("/trotinette", name="trash")
+   */
+  function getTrotinette()
+  {
+    $httpClient = HttpClient::create();
+    $response = $httpClient->request('GET', 'https://opendata.paris.fr/api/records/1.0/search/?dataset=emplacements-de-stationnement-trottinettes&rows=50&facet=code_postal&facet=categorie');
+
+    // Check HTTP response
+    if (200 !== $response->getStatusCode()) {
+      // handle the HTTP request error
+      echo strval('Error(/trash): Status Code: ' + $response->getStatusCode());
+    } else {
+      $content = $response->getContent();
+      $responseApi = JsonResponse::fromJsonString($content);
+      return $responseApi;
+    }
+  }
 }
