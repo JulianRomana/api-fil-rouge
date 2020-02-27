@@ -47,7 +47,7 @@ class dataApiRequest
   }
 
   /**
-   * @Route("/trotinette", name="trotinette")
+   * @Route("/trottinette", name="trottinette")
    */
   function getTrotinette()
   {
