@@ -9,8 +9,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *   collectionOperations={"GET", "POST"},
- *   itemOperations={"GET", "DELETE"},
+ *   collectionOperations={"GET"},
+ *   itemOperations={"GET"},
  * )
  * @ApiFilter(SearchFilter::class, properties={
  *   "name": "exact"

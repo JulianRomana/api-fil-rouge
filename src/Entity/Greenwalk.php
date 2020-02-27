@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *   collectionOperations={"GET", "POST"},
- *   itemOperations={"GET", "DELETE"},
+ *   collectionOperations={"GET"},
+ *   itemOperations={"GET"},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\GreenwalkRepository")
  */
