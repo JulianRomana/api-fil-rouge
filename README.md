@@ -42,7 +42,7 @@ If you can see api platform's swagger, everything is okay for you :)
 
 ### Diagramme
 
-![alt text](./src/assets/image/MCDlouis.png)
+![Screenshot](./src/assets/image/MCDlouis.png)
 
 Nous avions plusieurs type de données : API externe et données en dur.
 
